@@ -22,6 +22,19 @@ public class ReverseList {
         return pre;
     }
 
+    public static ListNode reverseList_recursive(ListNode head){
+
+        if (head == null || head.next == null)
+            return head;
+
+        ListNode newHead = reverseList_recursive(head.next);
+        head.next.next = head;
+        head.next = null;
+
+        return newHead;
+
+    }
+
     public static ListNode createLinkedList(int[] arr){
         if (arr.length == 0)
             return null;
@@ -53,5 +66,8 @@ public class ReverseList {
 
         ListNode newHead = reverseList(head);
         printLinkedList(newHead);
+
+        ListNode Head = reverseList_recursive(newHead);
+        printLinkedList(Head);
     }
 }
